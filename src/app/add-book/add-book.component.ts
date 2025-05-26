@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent {
+  @Output() bookAdded = new EventEmitter<void>();
+
   book: any = {
     title: '',
     year: null,
@@ -39,6 +41,7 @@ export class AddBookComponent {
           publisherName: '',
           categoryNames: ''
         };
+        this.bookAdded.emit(); // Emituje zdarzenie do rodzica (app.component)
       },
       error: (err: any) => alert('Error: ' + err.message)
     });
