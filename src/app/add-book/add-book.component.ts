@@ -13,30 +13,32 @@ export class AddBookComponent {
   book: any = {
     title: '',
     year: null,
-    author: { id: null },
-    publisher: { id: null },
-    categories: []
+    authorName: '',
+    publisherName: '',
+    categoryNames: ''
   };
-
-  categoryId: number | null = null;
 
   constructor(private bookService: BookService) {}
 
   onSubmit() {
-    if (this.categoryId) {
-      this.book.categories = [{ id: this.categoryId }];
-    }
-    this.bookService.addBook(this.book).subscribe({
+    // Zamień string kategorii na tablicę
+    const preparedBook = {
+      ...this.book,
+      categoryNames: this.book.categoryNames
+        ? this.book.categoryNames.split(',').map((cat: string) => cat.trim())
+        : []
+    };
+
+    this.bookService.addBook(preparedBook).subscribe({
       next: () => {
         alert('Book added!');
         this.book = {
           title: '',
           year: null,
-          author: { id: null },
-          publisher: { id: null },
-          categories: []
+          authorName: '',
+          publisherName: '',
+          categoryNames: ''
         };
-        this.categoryId = null;
       },
       error: (err: any) => alert('Error: ' + err.message)
     });
