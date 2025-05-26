@@ -1,0 +1,41 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #f9f9f9;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #2a3d66;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+
+th, td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #2a3d66;
+  color: #fff;
+}
+
+tr:hover {
+  background: #e3e9f9;
+}
+
+.empty-info {
+  margin-top: 32px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
