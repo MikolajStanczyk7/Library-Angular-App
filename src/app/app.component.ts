@@ -14,6 +14,7 @@ import { LoaderComponent } from './loader/loader.component';
 export class AppComponent implements OnInit {
   books: any[] = [];
   loading = true;
+  showAddBook = false; // <-- nowy stan
 
   constructor(private bookService: BookService) {}
 
@@ -27,11 +28,16 @@ export class AppComponent implements OnInit {
       next: (data) => {
         this.books = data;
         this.loading = false;
+        this.showAddBook = false; // ukryj formularz po dodaniu książki
       },
       error: () => {
         this.books = [];
         this.loading = false;
       }
     });
+  }
+
+  toggleAddBook() {
+    this.showAddBook = !this.showAddBook;
   }
 }
